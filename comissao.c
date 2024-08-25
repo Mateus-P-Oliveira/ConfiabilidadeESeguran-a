@@ -17,7 +17,7 @@ float calcularComissao(float totalVendas) {
 
 // Função para gerenciar as vendas
 void gerenciarVendas() {
-  int pasVendidas = 0, regadoresVendidos = 0, vasosVendidos = 0;
+  int pasVendidas = 0, regadoresVendidos = 0, vasosVendidos = 0, temp;
   float totalVendas = 0.0;
 
   while (1) {
@@ -37,15 +37,16 @@ void gerenciarVendas() {
 
     if (pas == 0 && regadores == 0 && vasos == 0) {
       printf("Nao houve vendas no mês\n");
-    } else if (pasVendidas >= 70 || (pasVendidas+=pas >= 70)) { //Corrigir quando adiciono muitas coisas de uma vez só
+    } else if (pasVendidas >= 71 || ((temp = pasVendidas + pas) >= 71)) {
       printf("Limite de Pas vendidas atingido\n");
       regadoresVendidos += regadores;
       vasosVendidos += vasos;
-    } else if (regadoresVendidos >= 80 || (regadoresVendidos+=regadores >= 80)) {
+    } else if (regadoresVendidos >= 81 ||
+               ((temp = regadoresVendidos + regadores) >= 81)) {
       printf("Limite de Regadores vendidas atingido\n");
       pasVendidas += pas;
       vasosVendidos += vasos;
-    } else if (vasosVendidos >= 90 || (vasosVendidos+=vasos >= 90)) {
+    } else if (vasosVendidos >= 91 || ((temp = vasosVendidos + vasos) >= 91)) {
       printf("Limite de Vasos vendidas atingido\n");
       pasVendidas += pas;
       regadoresVendidos += regadores;
@@ -54,10 +55,11 @@ void gerenciarVendas() {
       regadoresVendidos += regadores;
       vasosVendidos += vasos;
     }
-    printf("%d %d %d\n", pasVendidas, regadoresVendidos,vasosVendidos);
-    totalVendas += pas * 45 + regadores * 30 + vasos * 25;
+    printf("Vendas Feitas: \nPas: %d \nRegadores: %d \nVasos: %d\n",
+           pasVendidas, regadoresVendidos, vasosVendidos);
   }
-
+  totalVendas =
+      (pasVendidas * 45) + (regadoresVendidos * 30) + (vasosVendidos * 25);
   float comissao = calcularComissao(totalVendas);
 
   printf("Total de vendas: R$%.2f\n", totalVendas);
