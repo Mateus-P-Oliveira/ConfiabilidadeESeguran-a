@@ -37,15 +37,15 @@ void gerenciarVendas() {
 
     if (pas == 0 && regadores == 0 && vasos == 0) {
       printf("Nao houve vendas no mês\n");
-    } else if (pasVendidas >= 70) { //Corrigir quando adiciono muitas coisas de uma vez só
+    } else if (pasVendidas >= 70 || (pasVendidas+=pas >= 70)) { //Corrigir quando adiciono muitas coisas de uma vez só
       printf("Limite de Pas vendidas atingido\n");
       regadoresVendidos += regadores;
       vasosVendidos += vasos;
-    } else if (regadoresVendidos >= 80) {
+    } else if (regadoresVendidos >= 80 || (regadoresVendidos+=regadores >= 80)) {
       printf("Limite de Regadores vendidas atingido\n");
       pasVendidas += pas;
       vasosVendidos += vasos;
-    } else if (vasosVendidos >= 90) {
+    } else if (vasosVendidos >= 90 || (vasosVendidos+=vasos >= 90)) {
       printf("Limite de Vasos vendidas atingido\n");
       pasVendidas += pas;
       regadoresVendidos += regadores;
